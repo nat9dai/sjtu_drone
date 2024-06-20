@@ -51,10 +51,11 @@ def generate_launch_description():
     print("namespace: ", model_ns)
 
 
-    world_file = os.path.join(
-        get_package_share_directory("sjtu_drone_description"),
-        "worlds", "playground.world"
-    )
+    #world_file = os.path.join(
+    #    get_package_share_directory("sjtu_drone_description"),
+    #    "worlds", "playground.world"
+    #)
+    world_file = "/usr/share/gazebo-11/worlds/empty.world"
 
     def launch_gzclient(context, *args, **kwargs):
         if context.launch_configurations.get('use_gui') == 'true':
@@ -86,16 +87,16 @@ def generate_launch_description():
             output='screen',
         ),
 
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')
-            ),
-            launch_arguments={'world': world_file,
-                              'verbose': "true",
-                              'extra_gazebo_args': 'verbose'}.items()
-        ),
+        #IncludeLaunchDescription(
+        #    PythonLaunchDescriptionSource(
+        #        os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')
+        #    ),
+        #    launch_arguments={'world': world_file,
+        #                      'verbose': "true",
+        #                      'extra_gazebo_args': 'verbose'}.items()
+        #),
 
-        OpaqueFunction(function=launch_gzclient),
+        #OpaqueFunction(function=launch_gzclient),
 
         Node(
             package="sjtu_drone_bringup",

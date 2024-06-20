@@ -6,9 +6,11 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
     use_gui = DeclareLaunchArgument('use_gui', default_value='true', description='Flag to enable or disable GUI')
-
-    world_file = "/usr/share/gazebo-11/worlds/empty.world"
-    #world_file = "/home/nat/sjtu_drone_ws/src/sjtu_drone/sjtu_drone_description/worlds/playground.world"
+    
+    world_file = os.path.join(
+        get_package_share_directory("sjtu_drone_description"),
+        "worlds", "west_2_with_stuff.world"
+    )
 
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
 
